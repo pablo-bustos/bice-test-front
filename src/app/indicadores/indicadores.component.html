@@ -1,0 +1,28 @@
+<hr>
+<p>En este sitio usted puede <b>ver los valores de los indicadores económicos de hoy</b>. Además, puede <b>presionar sobre el que desee</b> y se <b>desplegará su valor</b> y variación <b>en el tiempo</b>.</p>
+<hr>
+<div class="loading" *ngIf="!values"><img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" /></div>
+<div class="main" *ngIf="values">
+  <div *ngIf="values">
+    <div class="left">
+      <div class="h1">Indicadores</div>
+      <div class="h2">Valores actuales</div>
+      <div class="values" (click)="showElement(element.key, element.unit)" *ngFor='let element of values | keyvalue'>
+        <div class='element'>{{ element.key | uppercase }}</div>
+        <div class='value'>{{ element.value.value}} {{unit[element.value.unit]}}</div>
+      </div>
+    </div>
+    <div class="right">
+      <div *ngIf="!ready"><img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" /></div>
+      <div *ngIf="ready">
+        <div *ngIf="elementValues">
+          <div class="h1">{{elementValues.name}}</div>
+          <div class="h2">Series temporales</div>
+          <google-chart #chart [title]="" [type]="chartType" [data]="elementValues.values"
+            [columnNames]="columnNames" [options]="options" [width]="width" [height]="height">
+          </google-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

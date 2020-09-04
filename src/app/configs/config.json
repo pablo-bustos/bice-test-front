@@ -1,0 +1,9 @@
+{
+  "unit": {
+    "dolar": "USD",
+    "pesos": "CLP",
+    "euro": "EUR",
+    "porcentual": "%",
+    "yen": "JPY"
+  }
+}
